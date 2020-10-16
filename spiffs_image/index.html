@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+<head>
+  <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+  <style>
+    body {
+      background-color: white;
+      color: black
+    }
+
+    h1 {
+      color: black;
+      text-align: left;
+    }
+
+    .movement_direction {
+      border: none;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px;
+      position: absolute;
+    }
+
+    .movement_direction_forward{
+      left: 50px;
+      top: 50px;
+      background-color: #4CAF50;
+    }
+    .movement_direction_left{
+      left: 0px;
+      top: 100px;
+      background-color: #4CAF50;
+    }
+    .movement_direction_stop{
+      left: 50px;
+      top: 100px;
+      background-color: rgb(184, 12, 12);
+    }
+    .movement_direction_rigth{
+      left: 100px;
+      top: 100px;
+      background-color: #4CAF50;
+    }
+    .movement_direction_backward{
+      left: 50px;
+      top: 150px;
+      background-color: #4CAF50;
+    }
+    .head_direction_up{
+      left: 50px;
+      top: 200px;
+      background-color: #4CAF50;
+    }
+    .head_direction_left{
+      left: 0px;
+      top: 250px;
+      background-color: #4CAF50;
+    }
+    .head_direction_middle{
+      left: 50px;
+      top: 250px;
+      background-color: rgb(184, 12, 12);
+    }
+    .head_direction_rigth{
+      left: 100px;
+      top: 250px;
+      background-color: #4CAF50;
+    }
+    .head_direction_down{
+      left: 50px;
+      top: 300px;
+      background-color: #4CAF50;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Dream Horse Web Remote Controll</h1>
+  <br>
+  <button class= "movement_direction movement_direction_forward" name="forward" type="button" onclick="movement_req( 'forward' )"> </button>
+  <button class= "movement_direction movement_direction_left" name="left" type="button" onclick="movement_req( 'left' )"> </button>
+  <button class= "movement_direction movement_direction_stop" name="stop" type="button" onclick="movement_req( 'stop' )"> </button>
+  <button class= "movement_direction movement_direction_rigth" name="rigth" type="button" onclick="movement_req( 'rigth' )"> </button>
+  <button class= "movement_direction movement_direction_backward" name="backward" type="button" onclick="movement_req( 'backward' )"> </button>
+  <button class= "movement_direction head_direction_up" name="backward" type="button" onclick="movement_req( 'h_up' )"> </button>
+  <button class= "movement_direction head_direction_left" name="backward" type="button" onclick="movement_req( 'h_left' )"> </button>
+  <button class= "movement_direction head_direction_middle" name="backward" type="button" onclick="movement_req( 'h_middle' )"> </button>
+  <button class= "movement_direction head_direction_rigth" name="backward" type="button" onclick="movement_req( 'h_rigth' )"> </button>
+  <button class= "movement_direction head_direction_down" name="backward" type="button" onclick="movement_req( 'h_down' )"> </button>
+</body>
+<script>
+  function getpos(arg) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let angle = parseFloat(this.responseText);
+        $('#image').css('transform', 'rotate(' + angle + 'deg)');
+      }
+    };
+    xhttp.open("GET", "/roll", true);
+    xhttp.send();
+  }
+  
+  function movement_req(direction) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/motion?direction=" + direction, true);
+    xhttp.send();
+  }
+  
+  jQuery(document).ready(function () {
+
+    jQuery('.ledcolor').submit(function () {
+
+      $.ajax({
+        url: $(this).attr('action'),
+        type: $(this).attr('method'),
+        data: $(this).serialize(),
+        success: function (data) {
+          // alert('GET is successfully submitted');
+        },
+        error: function () {
+          // alert('Something wrong');
+        }
+      });
+
+      return false;
+    });
+
+  });
+</script>
+
+</html>

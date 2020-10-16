@@ -1,0 +1,33 @@
+#ifndef INC_DRAEMHORSE_H
+#define INC_DRAEMHORSE_H
+
+
+#define GPIO_LEGLEFT_POS        34
+#define GPIO_LEGRIGTH_POS       35
+
+#define ADC_RAW_HEAD_DOWN       285
+#define ADC_RAW_HEAD_UP         3350
+#define ADC_RAW_HEAD_RIGTH      3390
+#define ADC_RAW_HEAD_LEFT       700
+#define ADC_RAW_HEAD_MIDDLE     2350
+#define ADC_RAW_HEAD_LR_MARGIN         150
+#define ADC_RAW_HEAD_MIDDLE_MARGIN     500
+
+#define HEAD_POS_LEFT           1
+#define HEAD_POS_RIGTH          2
+#define HEAD_POS_LR_MIDDLE      4
+#define HEAD_POS_DOWN           8
+#define HEAD_POS_UP             16
+#define HEAD_POS_UD_MIDDLE      32
+
+#define MOTION_TIMEOUT_HEAD_LR_200MS    10  
+#define MOTION_TIMEOUT_LEGS_100MS    30  
+
+#define GPIO_MOTOR_HEADUPDOWN_IN1 17
+#define GPIO_MOTOR_HEADUPDOWN_IN2 5
+#define GPIO_MOTOR_HEADLEFTRIGTH_IN1 21
+#define GPIO_MOTOR_HEADLEFTRIGTH_IN2 16
+#define GPIO_MOTOR_FORWARDBACKWARD_IN1 19
+#define GPIO_MOTOR_FORWARDBACKWARD_IN2 18
+
+#endif
